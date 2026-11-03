@@ -1,28 +1,51 @@
-//second task
 #include <iostream>
-#include <string>
-
+#include <vector>
 using namespace std;
 
-int main(){
-    int a, b;
-    string exp;
-    cin >> a >> b;
-    if (a > b){
-        while (a != b){
-            if (a % 2 == 0 && a / 2 >= b){
-                a /= 2;
-                cout << ":2\n";
-            }
-            else{
-                a--;
-                cout << "-1\n";
+int main() {
+    int n, m;
+    cin >> n >> m;
+
+    vector<vector<int>> field(n, vector<int>(m, 0));
+
+    int w;
+    cin >> w;
+
+    for (int i = 0; i < w; i++) {
+        int row, column;
+        cin >> row >> column;
+
+        row--;
+        column--;
+
+        field[row][column] = -1;
+
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = column - 1; j <= column + 1; j++) {
+                if (i >= 0 && i < n && j >= 0 && j < m) {
+                    if (field[i][j] != -1) {
+                        field[i][j]++;
+                    }
+                }
             }
         }
-        cout << exp;
     }
-    else{
-        cout << "error";
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (field[i][j] == -1) {
+                cout << "*";
+            }
+            else {
+                cout << field[i][j];
+            }
+
+            if (j < m - 1) {
+                cout << " ";
+            }
+        }
+        cout << endl;
     }
+
     return 0;
 }

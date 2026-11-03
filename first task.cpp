@@ -1,19 +1,29 @@
-//first task 
 #include <iostream>
-
+#include <vector>
 using namespace std;
 
-int main(){
-    double count_first_day, sum;
-    cin >> count_first_day >> sum;
-    double tmp = count_first_day;
-    int day = 1;
-    while(tmp < sum){
-        tmp *= 1.1;
-        day++;
-    }
+int main() {
+    int n;
+    cin >> n;
 
-    cout << day;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i + j < n - 1) {
+                cout << 0;
+            }
+            else if (i + j == n - 1) {
+                cout << 1;
+            }
+            else {
+                cout << 2;
+            }
+
+            if (j < n - 1) {
+                cout << " ";
+            }
+        }
+        cout << "\n";
+    }
 
     return 0;
 }

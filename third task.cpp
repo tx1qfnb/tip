@@ -1,30 +1,39 @@
-//third task
+
 #include <iostream>
 #include <vector>
+#include <string>
 
 using namespace std;
 
+int main() {
+    int x, n;
+    cin >> x >> n;
 
-int main(){  
-    int n;
-    cin >> n;
-    vector<int> arr(n);
+    string number = to_string(x);
 
-    for(int i = 0; i < n; i++){
-        cin >> arr[i];
+    for (int i = 1; i < n; i++) {
+        string new_number = "";
+
+        int count = 1;
+
+        for (int j = 1; j < number.size(); j++) {
+            if (number[j] == number[j - 1]) {
+                count++;
+            } 
+            else {
+                new_number += to_string(count);
+                new_number += number[j - 1];
+                count = 1;
+            }
+        }
+
+        new_number += to_string(count);
+        new_number += number[number.size() - 1];
+
+        number = new_number;
     }
 
-    vector<int> st;
-    int kfc_students = 0;
-    for(int i = 0; i < n; i++){
-        if(!st.empty() && st.back() == arr[i]){
-            st.pop_back();       
-            kfc_students += 2;  
-        }
-        else{
-            st.push_back(arr[i]);
-        }
-    }
-    cout << kfc_students << "\n";
+    cout << number;
+
     return 0;
 }
