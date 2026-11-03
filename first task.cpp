@@ -1,29 +1,25 @@
 #include <iostream>
-#include <vector>
+
 using namespace std;
 
-int main() {
-    int n;
-    cin >> n;
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            if (i + j < n - 1) {
-                cout << 0;
-            }
-            else if (i + j == n - 1) {
-                cout << 1;
-            }
-            else {
-                cout << 2;
-            }
-
-            if (j < n - 1) {
-                cout << " ";
-            }
+long long power(long long num, long long pow){
+    long long res = 1;
+    while (pow > 0){
+        if (pow % 2 == 1){
+            res *= num;
         }
-        cout << "\n";
+        num *= num;
+        pow /= 2;
     }
+
+    return res;
+}
+
+int main(){
+    long long number, p;
+    cin >> number >> p;
+    number = (power(number, p));
+    cout << number;
 
     return 0;
 }
